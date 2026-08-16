@@ -1,5 +1,3 @@
-Early Stroke Detection Using Machine Learning Classifiers
-
 This project is a part of the AAI-500 course in the Applied Artificial Intelligence Program at the University of San Diego (USD).
 
 Installation
@@ -23,9 +21,10 @@ To run, edit, or reproduce this project locally, follow these setup instructions
 
 Project Intro/Objective
 
-Stroke remains a leading cause of global mortality and long-term disability, making early risk identification vital to prevent irreversible neurological damage[cite: 1]. The primary goal of this project is to build an automated, high-sensitivity machine learning decision-support pipeline that evaluates demographic, lifestyle, and clinical factors to flag at-risk patients early[cite: 1, 2].
+Stroke remains a leading cause of global mortality and long-term disability, making early risk identification vital to prevent irreversible neurological damage. The primary goal of this project is to build an automated, high-sensitivity machine learning decision-support pipeline that evaluates demographic, lifestyle, and clinical factors to flag at-risk patients early.
 
-Designed specifically for integration as a decision-support alert within clinical Electronic Health Record (EHR) systems, the model prioritizes Recall and ROC-AUC[cite: 1, 2]. By minimizing critical False Negatives, this system aims to ensure high-risk individuals receive timely, life-saving neurological evaluations before an acute event occurs[cite: 1, 2].
+Designed specifically for integration as a decision-support alert within clinical Electronic Health Record (EHR) systems, the model prioritizes Recall and ROC-AUC. By minimizing critical False Negatives, this system aims to ensure high-risk individuals receive timely, life-saving neurological evaluations before an acute event occurs.
+
 Contributor
 
     Alvaro Folgueira
@@ -67,7 +66,8 @@ Technologies
 Project Description
 Overview & Data Source
 
-This project utilizes a clinical dataset sourced from Kaggle containing 5,110 individual patient records across 10 predictor attributes and 1 binary target (stroke)[cite: 1, 2]. The dataset was partitioned into a strict 70-15-15 split (Training, Validation, and Holdout Test) to ensure unbiased model evaluation[cite: 1, 2].
+This project utilizes a clinical dataset sourced from Kaggle containing 5,110 individual patient records across 10 predictor attributes and 1 binary target (stroke). The dataset was partitioned into a strict 70-15-15 split (Training, Validation, and Holdout Test) to ensure unbiased model evaluation.
+
 Data Dictionary
 
     id (Identifier): Unique patient identifier
@@ -96,20 +96,27 @@ Data Dictionary
 
 Modeling & Pipeline Approach
 
-    Data Pre-Processing: Handled missing continuous values (~2.9% in bmi) via median imputation, applied log(1+x) transformations and RobustScaler to address right-skewed distributions, encoded categorical features via OneHotEncoder, and addressed extreme target imbalance (only 4.86% stroke cases) using SMOTE exclusively on training data[cite: 1, 2].
+    Data Pre-Processing: Handled missing continuous values (~2.9% in bmi) via median imputation, applied log(1+x) transformations and RobustScaler to address right-skewed distributions, encoded categorical features via OneHotEncoder, and addressed extreme target imbalance (only 4.86% stroke cases) using SMOTE exclusively on training data.
 
-    Base Model Evaluation: Benchmarked six baseline classifiers—Logistic Regression, SVM, KNN, Decision Trees, Random Forests, and XGBoost[cite: 1, 2].
+    Base Model Evaluation: Benchmarked six baseline classifiers—Logistic Regression, SVM, KNN, Decision Trees, Random Forests, and XGBoost.
 
-    Two-Step Tuning Strategy: Applied 5-fold cross-validation on SMOTE-balanced training data to tune hyperparameters for ROC-AUC, followed by probability threshold sweeps on raw validation data to optimize decision boundaries for high sensitivity (Recall)[cite: 1, 2].
+    Two-Step Tuning Strategy: Applied 5-fold cross-validation on SMOTE-balanced training data to tune hyperparameters for ROC-AUC, followed by probability threshold sweeps on raw validation data to optimize decision boundaries for high sensitivity (Recall).
 
-    Champion Model: Selected Logistic Regression for its superior ability to minimize false negatives[cite: 1, 2]. On the unseen holdout test set, the tuned model achieved an 81.6% Recall (identifying 31 of 38 actual stroke cases) and a 0.8336 ROC-AUC at a 0.48 decision threshold[cite: 1, 2].
+    Champion Model: Selected Logistic Regression for its superior ability to minimize false negatives. On the unseen holdout test set, the tuned model achieved an 81.6% Recall (identifying 31 of 38 actual stroke cases) and a 0.8336 ROC-AUC at a 0.48 decision threshold.
 
 Key Challenges & Roadblocks
 
-    Extreme Target Imbalance: Standard models yielded high accuracy (>93%) by simply predicting the majority class, masking near-zero sensitivity to stroke cases[cite: 1, 2].
+    Extreme Target Imbalance: Standard models yielded high accuracy (>93%) by simply predicting the majority class, masking near-zero sensitivity to stroke cases.
 
-    Precision-Recall Trade-off: Prioritizing high Recall to minimize missed diagnoses intentionally increased False Positives, requiring careful framing for clinical feasibility[cite: 1, 2].
+    Precision-Recall Trade-off: Prioritizing high Recall to minimize missed diagnoses intentionally increased False Positives, requiring careful framing for clinical feasibility.
 
+Project Deliverables
+
+    Report Document: Located in project_directory/report (.docx)
+
+    Presentation Slides: Located in project_directory/presentation/slides
+
+    Video Recording: Located in project_directory/presentation/video
 
 Acknowledgments
 
